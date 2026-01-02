@@ -1,0 +1,16 @@
+services:
+  api:
+    image: faq-project
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+  tests:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
+    command: pytest -v
